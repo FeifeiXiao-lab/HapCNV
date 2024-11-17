@@ -146,11 +146,23 @@ CorrectSize<-function(RC,L,step){
 #' @export
 #'
 
+# RC=count.mat
+# ref_qc=ref_qc
+# cr.threshold=0.8
+# GC.low=0.1
+# GC.up=0.4
+# mapp.threshold=0.9
+
 GC.MAP.normalization<-function(RC, ref_qc){
   
-  start=ref_qc$start
-  end=ref_qc$end
-  exon_size=end-start
+  # start=ref_qc$start
+  # end=ref_qc$end
+  # exon_size=end-start
+  
+  start=ref_qc@ranges@start
+  end=ref_qc@ranges@start + ref_qc@ranges@width
+  exon_size=ref_qc@ranges@width
+  
   gc=ref_qc$gc
   map=ref_qc$mapp  
   
