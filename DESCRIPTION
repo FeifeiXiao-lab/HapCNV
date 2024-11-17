@@ -11,7 +11,8 @@ Imports:
     modSaRa,
     DNAcopy,
     mclust,
-    FLCNA
+    FLCNA,
+    GenomicRanges
 Depends:
     R (>= 4.0.0)
 
