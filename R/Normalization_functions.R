@@ -201,8 +201,8 @@ GC.MAP.normalization<-function(RC, ref_qc){
   rownames(lrr)=rownames(RC_norm)
   colnames(lrr)=colnames(RC_norm)
   for(i in 1:dim(RC_norm)[2]){
-    # mean=median(RC_norm[,i])
-    mean=mean(RC_norm[,i])
+    mean=median(RC_norm[,i])
+    # mean=mean(RC_norm[,i])
     rc=RC_norm[,i]
     lrr[,i]=log2((rc+const)/mean)
   }
