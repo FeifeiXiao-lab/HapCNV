@@ -1,0 +1,11 @@
+exportPattern("^[[:alpha:]]+")
+
+
+export(GC.MAP.normalization)
+export(HapCNV)
+export(CBS.function)
+
+import(modSaRa)
+import(DNAcopy)
+import(mclust)
+import(FLCNA)
