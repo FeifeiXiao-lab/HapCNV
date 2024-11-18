@@ -190,7 +190,7 @@ GC.MAP.normalization<-function(RC, ref_qc){
     RCMAPNormIn <- RCMAPNormListIn$RCNorm
     
     ### GC-content Normalization ###
-    step <- 5
+    step <- 0.05
     RCGCNormListIn <- CorrectGC(RCMAPNormIn,GCContent=gc,step)
     RCGCNormIn <- RCGCNormListIn$RCNorm
     
