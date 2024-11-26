@@ -382,12 +382,12 @@ batch_calcCpp<-function(chr.seq=NULL, #sequence of start and end position for al
 #' \item{ct.mu}{The degrees of freedom in the cluster means for each parameter combination.}
 #'
 #' @examples
-#' Y <- matrix(rnorm(10000, 0, 0.5),10, 1000)
-#' output <- FLCNA(K = c(1:2), lambda = c(2,3), Y=Y)
+#' y <- matrix(rnorm(10000, 0, 0.5),10, 1000)
+#' output <- FLCNA(K = c(1:2), lambda = c(2,3), y=y)
 #' output
 #'
 #' @export
-FLCNA_mod <- function(tuning=NULL, K=NULL, lambda = c(1.5), Y, N = 100, kms.iter = 100, kms.nstart = 100,
+FLCNA_mod <- function(tuning=NULL, K=NULL, lambda = c(1.5), y, N = 100, kms.iter = 100, kms.nstart = 100,
                       adapt.kms = FALSE, eps.diff = 1e-5, eps.em = 1e-5, iter.LQA = 20, eps.LQA = 1e-5,
                       cutoff=0.5, L=100, model.crit = 'bic'){
   ##  tuning: a matrix with 2 columns;
@@ -395,7 +395,7 @@ FLCNA_mod <- function(tuning=NULL, K=NULL, lambda = c(1.5), Y, N = 100, kms.iter
   ##  2nd column = lambda, nonnegative real number.
 
   ## ----- check invalid numbers
-  y = t(as.matrix(Y))
+  y = t(as.matrix(y))
   if (is.null(tuning)){
     if(is.null(K) | is.null(lambda)){
       stop("Require a matrix of tuning parameters for 'tuning' or vectors for 'K' and 'lambda' ")
