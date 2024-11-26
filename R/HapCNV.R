@@ -1,5 +1,6 @@
 #' this function construct pseudo-reference for each cell and perform normalization
 #' @param count.mat the count matrix after QC and normalization by GC content and mappbility
+#' @param log2R the matrix of log2 Ratio after QC and normalization by GC content and mappbility
 #' @param ref the reference information for bins in GRange format
 #' @param nclust vector of opitonal number of clusters
 #' @param lambda the vector of optional penalty terms
@@ -11,12 +12,12 @@
 #'
 #'
 HapCNV<-function(count.mat,
+                 log2R,
                  ref,
                  nclust  = 2,
                  lambda  = 10,
                  cutoff  = 0.35
 ){
-  log2R<-apply(count.mat,2,function(x){log2((x+0.01)/median(x))})
   log2R<-scale(log2R,center = T,scale = FALSE)
 
   # dim(log2R)
