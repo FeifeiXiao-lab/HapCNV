@@ -18,7 +18,7 @@ install_github("FeifeiXiao-lab/HapCNV")
 
 # Running HapCNV
 ## Examples
-### quality control and normalization for GC content and mappability
+Quality control and normalization for GC content and mappability
 ```
 RC_QC <- Calling_rate_QC(RC=count.mat,ref_qc=ref_qc, 
                          cr.threshold=0.8,
@@ -28,7 +28,7 @@ RC_QC <- Calling_rate_QC(RC=count.mat,ref_qc=ref_qc,
 norm.data <- GC.MAP.normalization(RC=RC_QC$RC, ref_qc=RC_QC$ref_qc)
 log2R     <- norm.data$log2Rdata
 ```
-### construct pseudo-reference for each cell and by which normalize the read count
+Construct pseudo-reference for each cell and perform data normalization
 ```
 pseudo_ref<-HapCNV(count.mat=norm.data$RC_norm,
                  log2R=log2R,
@@ -37,7 +37,7 @@ pseudo_ref<-HapCNV(count.mat=norm.data$RC_norm,
                  lambda  = 10,
                  cutoff  = 0.35)
 ```
-### perform CNV profiling using circular binary segmentation (CBS) method
+Conduct CNV profiling using circular binary segmentation (CBS) method
 ```
 CBS.res<-CBS.function(data.mat=pseudo_ref$log2R.norm.mat,
                   sample.name=NULL,alpha=0.01,
