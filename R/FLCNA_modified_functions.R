@@ -395,6 +395,11 @@ FLCNA_mod <- function(tuning=NULL, K=NULL, lambda = c(1.5), y, N = 100, kms.iter
   ##  2nd column = lambda, nonnegative real number.
 
   ## ----- check invalid numbers
+  #if (dim(y)[1]>= dim(y)[2]){
+  #  warning("rows denote cells and columns denote bins, transposing the matrix")
+  #  y = t(as.matrix(y))
+  #}
+  
   y = t(as.matrix(y))
   if (is.null(tuning)){
     if(is.null(K) | is.null(lambda)){
