@@ -22,7 +22,7 @@ HapCNV<-function(count.mat,
 
   # dim(log2R)
   # rows represents gene, cols represent cells
-  output <- FLCNA(K = c(nclust), lambda = lambda, Y=log2R)
+  output <- FLCNA(K = c(nclust), lambda = lambda, y=log2R)
 
   start=seq(1:nrow(log2R))
   end  =seq(1:nrow(log2R))
