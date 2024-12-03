@@ -1,4 +1,5 @@
 library("DNAcopy")
+source("/FLCNA_compensate_functions.R")
 CBS.function<-function(data.mat,sample.name=NULL,threshold=1,alpha=0.01){
   N<-nrow(data.mat)
   cnv.list<-data.frame() #CNVRuler format
