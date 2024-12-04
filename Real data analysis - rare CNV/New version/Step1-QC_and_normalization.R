@@ -189,7 +189,7 @@ calling.rate<-rowSums(count.mat2>0)/ncol(count.mat2)
 setwd("Data/gc_mappability_files")
 GC.1kb<-read.delim("pf3d7.mapability_gc.bin1kb.bed")
 GC.names       <- paste0(substr(GC.1kb$chr, 7, 8), ":" ,GC.1kb$pos1)
-kept.seq       <- GC.names[which(GC.1kb$GC>0.10 & GC.1kb$GC<0.40 & GC.1kb$mappability>0.9)]
+kept.seq       <- GC.names[which(GC.1kb$GC>0.10 & GC.1kb$GC<0.40 & GC.1kb$mappability>0.9 & calling.rate < 0.8)]
 rownames(down.sampling.mat_2cell) <- paste0(substr(down.sampling.mat_2cell$chr, 7, 8), ":" ,down.sampling.mat_2cell$start)
 count.mat2     <- down.sampling.mat_2cell[match(kept.seq,rownames(down.sampling.mat_2cell)),-c(1:3)]
 
