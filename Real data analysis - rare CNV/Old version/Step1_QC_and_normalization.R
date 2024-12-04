@@ -181,6 +181,9 @@ down.sampling.mat_2cell<-down.sampling.mat[,as.numeric(keep.2cell)]
 keep.10cell<-c(c(1,2,3),3+which(sampleinfo$sample.type=="10 cell"))
 down.sampling.mat_10cell<-down.sampling.mat[,keep.10cell]
 
+calling.rate_2cell<-rowSums(down.sampling.mat_2cell>0)/ncol(down.sampling.mat_2cell)
+calling.rate_10cell<-rowSums(down.sampling.mat_10cell>0)/ncol(down.sampling.mat_10cell)
+
 # ------------------------------------------------------------------------- #
 # QC, remove bins of poor quality based on GC content and Mappability
 # 2-cell smaples
@@ -189,7 +192,7 @@ GC.1kb<-read.delim("pf3d7.mapability_gc.bin1kb.bed")
 dim(GC.1kb)
 
 GC.names       <- paste0(substr(GC.1kb$chr, 7, 8), ":" ,GC.1kb$pos1)
-kept.seq       <- GC.names[which(GC.1kb$GC>0.10 & GC.1kb$GC<0.40 & GC.1kb$mappability>0.9)]
+kept.seq       <- GC.names[which(GC.1kb$GC>0.10 & GC.1kb$GC<0.40 & GC.1kb$mappability>0.9 & calling.rate_2cell<0.8)]
 rownames(down.sampling.mat_2cell) <- paste0(substr(down.sampling.mat_2cell$chr, 7, 8), ":" ,down.sampling.mat_2cell$start)
 count.mat2     <- down.sampling.mat_2cell[match(kept.seq,rownames(down.sampling.mat_2cell)),-c(1:3)]
 
@@ -213,7 +216,7 @@ GC.1kb<-read.delim("pf3d7.mapability_gc.bin1kb.bed")
 dim(GC.1kb)
 
 GC.names       <- paste0(substr(GC.1kb$chr, 7, 8), ":" ,GC.1kb$pos1)
-kept.seq       <- GC.names[which(GC.1kb$GC>0.10 & GC.1kb$GC<0.40 & GC.1kb$mappability>0.9)]
+kept.seq       <- GC.names[which(GC.1kb$GC>0.10 & GC.1kb$GC<0.40 & GC.1kb$mappability>0.9 & calling.rate_10cell<0.8)]
 rownames(down.sampling.mat_10cell) <- paste0(substr(down.sampling.mat_10cell$chr, 7, 8), ":" ,down.sampling.mat_10cell$start)
 count.mat2     <- down.sampling.mat_10cell[match(kept.seq,rownames(down.sampling.mat_10cell)),-c(1:3)]
 
