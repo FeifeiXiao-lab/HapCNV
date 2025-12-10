@@ -1,9 +1,9 @@
-Package: HapCNV
+Package: GapCNV
 Type: Package
-Title: HapCNV: A Comprehensive Framework for CNV Detection in Haploid Single-Cell DNA Sequencing Data
+Title: GapCNV: A Comprehensive Framework for CNV Detection in Haploid Single-Cell DNA Sequencing Data
 Version: 1.0
 Authors: Xuanxuan Yu, Fei Qin, Shiwei Liu, Noah Brown, Guoshuai Cai, Jennifer L. Guler, Feifei Xiao
-Description: we developed a comprehensive statistical framework for CNV detection with scDNA-seq data from haploids (HapCNV).
+Description: we developed a comprehensive statistical framework for CNV detection with scDNA-seq data from haploids (GapCNV).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
