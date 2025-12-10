@@ -207,7 +207,7 @@ mean.init<-function (mean.matrix, ref, cutoff = 0.8){
 # # -------------------------------------------------------------------- #
 # # -------------------------------------------------------------------- #
 # # -------------------------------------------------------------------- #
-# HapCNV
+# GapCNV
 source("FLCNA_compensate_functions.R")
 
 library("Seurat")
@@ -471,4 +471,5 @@ clinical.data$Phenotype<-1
 clinical.data$Phenotype[which(substr(clinical.data$Sample_ID,1,1) %in% c("u","U"))]<-0
 clinical.data<-clinical.data[,which(colnames(clinical.data) %in% c("Sample_ID","Phenotype"))]
 write.table(clinical.data,"clinic.CNVRuler.GMM.txt",row.names = FALSE,quote = FALSE,sep = "\t")
+
 
