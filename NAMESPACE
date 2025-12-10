@@ -2,7 +2,7 @@ exportPattern("^[[:alpha:]]+")
 
 
 export(GC.MAP.normalization)
-export(HapCNV)
+export(GapCNV)
 export(CBS.function)
 
 import(modSaRa)
