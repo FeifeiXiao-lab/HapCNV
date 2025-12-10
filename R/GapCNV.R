@@ -11,7 +11,7 @@
 #'@export
 #'
 #'
-HapCNV<-function(count.mat,
+GapCNV<-function(count.mat,
                  log2R,
                  ref,
                  nclust  = 2,
