@@ -79,9 +79,9 @@ CBS.function<-function(data.mat,sample.name=NULL,alpha=0.01,chr,maploc){
     )
   }
 
-  priors = mean.init_HapCNV(mean.vector=cnv.list$seg.mean, G=3)
+  priors = mean.init_GapCNV(mean.vector=cnv.list$seg.mean, G=3)
 
-  GMM.res<-gausianMixture_HapCNV(CBS.seg.res=cnv.list, priors=priors, L=200, criteria=0.001, G=3)
+  GMM.res<-gausianMixture_GapCNV(CBS.seg.res=cnv.list, priors=priors, L=200, criteria=0.001, G=3)
 
   CNV.res<-GMM.res$CNV.res[,c(c("Sample_ID", "Chr","Start","End","width","seg.mean","CNV.state"))]
   # colnames(GMM.res$CNV.res)
@@ -99,7 +99,7 @@ CBS.function<-function(data.mat,sample.name=NULL,alpha=0.01,chr,maploc){
 #'
 #'@export
 #'
-mean.init_HapCNV<-function (mean.vector, G=3){
+mean.init_GapCNV<-function (mean.vector, G=3){
 
   yMclust <- Mclust(mean.vector,G=G,verbose = FALSE)
   init.clust<-yMclust$classification
@@ -132,7 +132,7 @@ mean.init_HapCNV<-function (mean.vector, G=3){
 #'@export
 #'
 
-gausianMixture_HapCNV <- function(CBS.seg.res, priors, L, criteria=0.01, G) {
+gausianMixture_GapCNV <- function(CBS.seg.res, priors, L, criteria=0.01, G) {
 
   means=CBS.seg.res$seg.mean
   sum.x.sq=CBS.seg.res$sum.x.sq
@@ -140,13 +140,13 @@ gausianMixture_HapCNV <- function(CBS.seg.res, priors, L, criteria=0.01, G) {
   len=CBS.seg.res$num.marker
   st=G
   state    <- vector()
-  para.new <- updateEM_hapCNV(p.in=priors$p, mu.in=priors$mu, sigma.in=priors$sigma, means, sum.x.sq, N, len, st)
+  para.new <- updateEM_GapCNV(p.in=priors$p, mu.in=priors$mu, sigma.in=priors$sigma, means, sum.x.sq, N, len, st)
   tmp.diff <- sum((priors$mu-para.new$mu.new)**2)
   iter = 1
   while(iter<L & tmp.diff>criteria){
     # print(iter)
     old.mu   <- para.new$mu.new
-    para.new <- updateEM_hapCNV(p.in=para.new$p.new, mu.in=para.new$mu.new, sigma.in=para.new$sigma.new, means, sum.x.sq, N, len, st)
+    para.new <- updateEM_GapCNV(p.in=para.new$p.new, mu.in=para.new$mu.new, sigma.in=para.new$sigma.new, means, sum.x.sq, N, len, st)
     tmp.diff <- sum(c(old.mu-para.new$mu.new)**2)
     iter = iter + 1
   }
@@ -192,7 +192,7 @@ gausianMixture_HapCNV <- function(CBS.seg.res, priors, L, criteria=0.01, G) {
 # N
 # len
 # st
-updateEM_hapCNV <- function (p.in, mu.in, sigma.in, means, sum.x.sq, N, len, st) {
+updateEM_GapCNV <- function (p.in, mu.in, sigma.in, means, sum.x.sq, N, len, st) {
   ##Calcute the prob of each segment belong to each state
   p <- dens <- matrix(NA, N, st)
   for (i in 1:N) {
